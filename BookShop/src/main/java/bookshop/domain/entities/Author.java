@@ -26,4 +26,8 @@ public class Author extends BaseEntity {
     public String toStringWithCount() {
         return String.format("%s %s %d", firstName, lastName, books.size());
     }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }

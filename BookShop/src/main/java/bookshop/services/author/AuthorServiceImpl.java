@@ -50,4 +50,9 @@ public class AuthorServiceImpl implements AuthorService {
     public List<Author> findAllOrderByBooks() {
         return this.authorRepository.findAllDistinctOrderByBooks().orElseThrow(NoSuchElementException::new);
     }
+
+    @Override
+    public List<Author> findAllByFirstNameEndingWith(String suffix) {
+        return this.authorRepository.findAllByFirstNameEndingWith(suffix).orElseThrow(NoSuchElementException::new);
+    }
 }

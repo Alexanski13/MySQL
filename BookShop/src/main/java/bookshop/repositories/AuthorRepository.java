@@ -18,5 +18,7 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 
     @Query("Select a from Author a order by a.books.size")
     Optional<List<Author>> findAllDistinctOrderByBooks();
+
+    Optional<List<Author>> findAllByFirstNameEndingWith(String suffix);
 }
 

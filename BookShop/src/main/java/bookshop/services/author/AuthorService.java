@@ -4,6 +4,7 @@ import bookshop.domain.entities.Author;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface AuthorService {
 
@@ -16,4 +17,6 @@ public interface AuthorService {
     List<Author> findDistinctByBooksReleaseDateBefore(LocalDate localDate);
 
     List<Author> findAllOrderByBooks();
+
+    List<Author> findAllByFirstNameEndingWith(String suffix);
 }
