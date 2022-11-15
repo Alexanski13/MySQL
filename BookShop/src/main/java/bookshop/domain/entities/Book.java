@@ -45,7 +45,7 @@ public class Book extends BaseEntity {
     @ManyToMany
     private Set<Category> categories;
 
-    public String getBookAndTitleFormat() {
+    public String getBookTitleAndPriceFormat() {
         return this.title + " - $" + this.price;
     }
 
@@ -53,7 +53,11 @@ public class Book extends BaseEntity {
         return this.title + " " + this.editionType.name() + " " + this.price;
     }
 
-    public String getBookTitleAndAuthorFullNameFormat(){
-        return this.title  + " (" + this.author.getFullName() + ")";
+    public String getBookTitleReleaseDateCopiesFormat() {
+        return this.title + " " + this.releaseDate + " " + this.copies;
+    }
+
+    public String getBookTitleAndAuthorFullNameFormat() {
+        return this.title + " (" + this.author.getFullName() + ")";
     }
 }

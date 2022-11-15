@@ -33,8 +33,10 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Author getRandomAuthor() {
         final long count = this.authorRepository.count();
+
         if (count != 0) {
-            final long randomAuthorId = new Random().nextLong(1L, count);
+            final long randomAuthorId = new Random().nextLong(1L, count) + 1L;
+
             return this.authorRepository.findAuthorById(randomAuthorId).orElseThrow(NoSuchElementException::new);
         }
 
@@ -42,17 +44,39 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> findDistinctByBooksReleaseDateBefore(LocalDate localDate) {
-        return this.authorRepository.findDistinctByBooksReleaseDateBefore(localDate).orElseThrow(NoSuchElementException::new);
+    public List<Author> findDistinctByBooksBefore(LocalDate date) {
+        final List<Author> authors = this.authorRepository
+                .findDistinctByBooksReleaseDateBefore(date)
+                .orElseThrow(NoSuchElementException::new);
+
+        authors.stream()
+                .map(Author::getFullName)
+                .forEach(System.out::println);
+
+        return authors;
     }
 
     @Override
     public List<Author> findAllOrderByBooks() {
-        return this.authorRepository.findAllDistinctOrderByBooks().orElseThrow(NoSuchElementException::new);
+        final List<Author> authors = this.authorRepository
+                .findAllDistinctOrderByBooks()
+                .orElseThrow(NoSuchElementException::new);
+
+        authors.forEach(author -> System.out.println(author.toStringWithCount()));
+
+        return authors;
     }
 
     @Override
     public List<Author> findAllByFirstNameEndingWith(String suffix) {
-        return this.authorRepository.findAllByFirstNameEndingWith(suffix).orElseThrow(NoSuchElementException::new);
+        final List<Author> authors = this.authorRepository
+                .findAllByFirstNameEndingWith(suffix)
+                .orElseThrow(NoSuchElementException::new);
+
+        authors.stream()
+                .map(Author::getFullName)
+                .forEach(System.out::println);
+
+        return authors;
     }
 }

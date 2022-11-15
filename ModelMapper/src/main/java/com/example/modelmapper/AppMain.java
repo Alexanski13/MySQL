@@ -1,11 +1,11 @@
 package com.example.modelmapper;
 
-import com.example.modelmapper.entities.Address;
 import com.example.modelmapper.entities.Employee;
 import com.example.modelmapper.services.EmployeeService;
-import com.example.modelmapper.entities.dtos.AddressDto;
+import com.example.modelmapper.entities.dtos.addresses.CreateAddressDto;
 import com.example.modelmapper.entities.dtos.CreateEmployeeDto;
 import com.example.modelmapper.services.AddressService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,10 +20,16 @@ public class AppMain implements CommandLineRunner {
     private final AddressService addressService;
     private final EmployeeService employeeService;
 
+    private final Gson gson;
+
+    private final Scanner scanner;
+
     @Autowired
-    public AppMain(AddressService addressService, EmployeeService employeeService) {
+    public AppMain(AddressService addressService, EmployeeService employeeService, Gson gson, Scanner scanner) {
         this.addressService = addressService;
         this.employeeService = employeeService;
+        this.gson = gson;
+        this.scanner = scanner;
     }
 
     @Override
@@ -33,7 +39,9 @@ public class AppMain implements CommandLineRunner {
 //        createAddress(scanner);
 //        createEmployee(scanner);
 //        printAllEmployees();
-        printAllEmployeeNames();
+//        printAllEmployeeNames();
+
+        createAddress(scanner);
     }
 
     private void printAllEmployeeNames() {
@@ -54,7 +62,7 @@ public class AppMain implements CommandLineRunner {
         String country = scanner.nextLine();
         String city = scanner.nextLine();
 
-        AddressDto address = new AddressDto(country, city);
+        CreateAddressDto address = new CreateAddressDto(country, city);
 
         CreateEmployeeDto employeeDto = new CreateEmployeeDto(firstName, null, salary, birthday, address);
 
@@ -65,13 +73,12 @@ public class AppMain implements CommandLineRunner {
     }
 
     private void createAddress(Scanner scanner) {
-        String country = scanner.nextLine();
-        String city = scanner.nextLine();
+        String input = this.scanner.nextLine();
 
-        AddressDto data = new AddressDto(country, city);
+        CreateAddressDto data = this.gson.fromJson(input, CreateAddressDto.class);
 
-        Address address = addressService.create(data);
+        CreateAddressDto created = addressService.create(data);
 
-        System.out.println(address);
+        System.out.println(this.gson.toJson(created));
     }
 }

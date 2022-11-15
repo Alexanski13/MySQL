@@ -11,8 +11,8 @@ public interface SeedService {
     void seedCategory() throws IOException;
 
     default void seedAllData() throws IOException {
+        seedCategory();
         seedAuthors();
         seedBooks();
-        seedCategory();
     }
 }

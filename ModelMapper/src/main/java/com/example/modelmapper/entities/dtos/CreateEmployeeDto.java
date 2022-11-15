@@ -1,21 +1,29 @@
 package com.example.modelmapper.entities.dtos;
 
+import com.example.modelmapper.entities.dtos.addresses.CreateAddressDto;
+import com.google.gson.annotations.Expose;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class CreateEmployeeDto {
 
+    @Expose
     private String firstName;
 
+    @Expose
     private String lastName;
 
+    @Expose
     private BigDecimal salary;
 
+//    @Expose
     private LocalDate birthday;
 
-    private AddressDto address;
+    @Expose
+    private CreateAddressDto address;
 
-    public CreateEmployeeDto(String firstName, String lastName, BigDecimal salary, LocalDate birthday, AddressDto address) {
+    public CreateEmployeeDto(String firstName, String lastName, BigDecimal salary, LocalDate birthday, CreateAddressDto address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -39,7 +47,7 @@ public class CreateEmployeeDto {
         return birthday;
     }
 
-    public AddressDto getAddress() {
+    public CreateAddressDto getAddress() {
         return address;
     }
 }

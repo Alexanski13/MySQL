@@ -33,8 +33,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Set<Category> getRandomCategories() {
         final long count = this.categoryRepository.count();
+
         if (count != 0) {
-            long randomAuthorId = new Random().nextLong(1L, count);
+            final long randomAuthorId = new Random().nextLong(1L, count) + 1L;
+
             return Set.of(this.categoryRepository.findById(randomAuthorId).orElseThrow(NoSuchElementException::new));
         }
 

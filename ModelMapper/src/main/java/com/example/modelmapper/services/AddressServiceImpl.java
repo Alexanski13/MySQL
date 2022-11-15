@@ -1,7 +1,8 @@
 package com.example.modelmapper.services;
 
 import com.example.modelmapper.entities.Address;
-import com.example.modelmapper.entities.dtos.AddressDto;
+import com.example.modelmapper.entities.dtos.addresses.AddressDto;
+import com.example.modelmapper.entities.dtos.addresses.CreateAddressDto;
 import com.example.modelmapper.repositories.AddressRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,11 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address create(AddressDto data) {
+    public AddressDto create(CreateAddressDto data) {
 
         Address address = mapper.map(data, Address.class);
 
-        return this.addressRepository.save(address);
+        Address save = this.addressRepository.save(address);
+        return this.mapper.map(save, AddressDto.class);
     }
 }
