@@ -1,5 +1,6 @@
 package workshop.models.companies;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -10,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ImportCompanyDTO {
 
     @XmlAttribute(name = "name")
+    @NotNull
     private String name;
 
     public ImportCompanyDTO() {

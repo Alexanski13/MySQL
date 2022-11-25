@@ -66,4 +66,9 @@ public class Employee {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    public Employee builderWithProject(Project project) {
+        this.setProject(project);
+        return this;
+    }
 }

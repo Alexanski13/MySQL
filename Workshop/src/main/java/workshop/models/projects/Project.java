@@ -35,6 +35,15 @@ public class Project {
     public Project() {
     }
 
+    public Project(String name, String description, Boolean isFinished, BigDecimal payment, LocalDate startDate, Company company) {
+        this.name = name;
+        this.description = description;
+        this.isFinished = isFinished;
+        this.payment = payment;
+        this.startDate = startDate;
+        this.company = company;
+    }
+
     public long getId() {
         return id;
     }
