@@ -88,9 +88,9 @@ public class ForecastServiceImpl implements ForecastService {
                     stringBuilder.append(String.format(INVALID_FORECAST)).append(System.lineSeparator());
                 }
                 continue;
-            }
-
+            } else {
             stringBuilder.append(String.format(INVALID_FORECAST)).append(System.lineSeparator());
+            }
         }
 
         return stringBuilder.toString();

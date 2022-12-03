@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.exam.models.dto.CityImportDto;
 import softuni.exam.models.entity.City;
-import softuni.exam.models.entity.Country;
 import softuni.exam.repository.CityRepository;
 import softuni.exam.repository.CountryRepository;
 import softuni.exam.service.CityService;
